@@ -31,6 +31,11 @@ gem 'devise'
 
 gem 'devise-i18n'
 
+gem 'bootstrap-sass', '3.3.1'
+
+gem 'sprockets', '2.11.0'
+
+gem 'pry-byebug', group: :development
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
