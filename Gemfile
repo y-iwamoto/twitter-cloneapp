@@ -35,6 +35,10 @@ gem 'bootstrap-sass', '3.3.1'
 
 gem 'sprockets', '2.11.0'
 
+gem 'will_paginate', '~> 3.0'
+
+gem 'will_paginate-bootstrap'
+
 gem 'pry-byebug', group: :development
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
