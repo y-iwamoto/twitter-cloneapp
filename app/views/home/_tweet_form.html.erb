@@ -1,0 +1,15 @@
+<div class="tweet_form">
+  <%= form_for(@tweet, :data => {:toggle=>"validator",:role=>"form"}) do |f| %>
+  <div class="form-group has-feedback"">
+    <div class="field">
+      <%= f.text_area :content, placeholder: "いまどうしてる？",class: "form-control",maxlength:  140,:required => true,:data => {:required_error=>"Tweetを入力してください", :maxlength_error => "140字以内
+        で入力してください。"}  %>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+    </div>
+  </div>
+    <div class="actions">
+      <%= f.submit "ツイートする",  :class=>"btn btn-primary btn-block" %>
+    </div>
+  <% end %>
+</div>

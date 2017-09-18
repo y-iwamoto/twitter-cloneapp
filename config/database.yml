@@ -20,7 +20,7 @@ development:
   database: twitter-cloneapp_development
   pool: 5
   username: twitter-cloneapp
-  password: {your-password}
+  password: 
   host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
