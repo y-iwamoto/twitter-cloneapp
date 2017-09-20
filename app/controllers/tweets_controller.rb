@@ -1,4 +1,5 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :correct_user,   only: [:destroy,:edit,:update]
   def create
     @tweet = current_user.tweets.build(tweet_params)
