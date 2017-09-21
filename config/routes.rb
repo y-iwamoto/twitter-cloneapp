@@ -2,7 +2,8 @@ TwitterCloneapp::Application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => "registrations"
   }
-  resources :tweets, only:[:create, :destroy]
+  match '/edit',    to: 'home#edit',    via: 'get'
+  resources :tweets, only:[:create, :destroy,:edit,:update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root to: "home#index"
