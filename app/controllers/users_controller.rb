@@ -2,17 +2,14 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def index
     @users = User.paginate(page: params[:page], :per_page => 30)
-    #@users = User.all
-    @user = current_user
-    @search = User.search(params[:q])
+    @search = User.ransack(params[:q])
   end
   def show
-    @user = current_user
     if params[:q].blank? && session[:search_q].present?
       params[:q] = session[:search_q]
     end
 
-    @search = User.search(params[:q])
+    @search = User.ransack(params[:q])
     session[:search_q] = params[:q]
 
     @users = @search.result.paginate(page: params[:page], :per_page => 30)
