@@ -1,0 +1,41 @@
+<div class="user_paging">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <div class="row">
+        <div class="col-xs-1">
+          <%= gravatar_for user, size: 52 %>
+        </div>
+        <div class="col-xs-9">
+          <div class="">
+            <%= user.name %>
+          </div>
+          <div class="">
+            <%= user.self_introduction %>
+          </div>
+          <% if user.homepage_url %>
+            <div class="">
+              <%= link_to user.homepage_url, user.homepage_url, :target=>["_blank"]  %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-xs-2">
+          <% unless current_user == user %>
+            <div id="follow_form">
+            <% if current_user.following?(user) %>
+              <%= render :partial => 'unfollow', :locals => { user: user }  %>
+            <% else %>
+    <%= render :partial => 'follow', :locals => { user: user }  %>
+            <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<div class="user_paging">
+  <%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>

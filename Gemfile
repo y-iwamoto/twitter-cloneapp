@@ -40,6 +40,11 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 
 gem 'pry-byebug', group: :development
+
+gem 'ransack'
+
+gem 'faker', '1.1.2'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

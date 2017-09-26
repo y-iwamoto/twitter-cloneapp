@@ -3,7 +3,15 @@ TwitterCloneapp::Application.routes.draw do
     :registrations => "registrations"
   }
   match '/edit',    to: 'home#edit',    via: 'get'
+  match '/users/' => 'users#index', :via => 'get'
+  match '/users/show' => 'users#show', :via => 'get'
   resources :tweets, only:[:create, :destroy,:edit,:update]
+  resources :relationships, only: [:create, :destroy]
+  resources :users, only: [:show, :index, :destroy] do
+    member do
+      get :following, :followers
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root to: "home#index"
