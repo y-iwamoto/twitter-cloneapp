@@ -1,0 +1,27 @@
+<div class="well well-sm follow_count">
+  <div class="row">
+    <div class="col-xs-3">
+      <a href="<%= user_path(current_user) %>">
+        <%= gravatar_for current_user, size: 52 %>
+      </a>
+    </div>
+    <div class="col-xs-9">
+      <h4><%= current_user.name %></h4>
+    </div>
+
+  </div>
+    <div class="stats">
+      <a href="<%= following_user_path(@user) %>">
+        ツイート
+        <strong id="following" class="stat">
+          <%= @user.followed_users.count %>
+        </strong>
+      </a>
+      <a href="<%= followers_user_path(@user) %>">
+        フォロワー
+        <strong id="followers" class="stat">
+          <%= @user.followers.count %>
+        </strong>
+      </a>
+  </div>
+</div>

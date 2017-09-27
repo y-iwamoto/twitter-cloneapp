@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   def index
     @users = User.paginate(page: params[:page], :per_page => 30)
+    @users_recomend = User.where("id IN (?) AND id NOT IN (?)",User.pluck(:id).shuffle[0..2],current_user.id)
     @search = User.ransack(params[:q])
   end
   def show
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
 
     @search = User.ransack(params[:q])
     session[:search_q] = params[:q]
-
+    @users_recomend = User.where("id IN (?) AND id NOT IN (?)",User.pluck(:id).shuffle[0..2],current_user.id)
     @users = @search.result.paginate(page: params[:page], :per_page => 30)
     if @users.count != 0
       flash.clear
@@ -26,7 +27,8 @@ class UsersController < ApplicationController
     @title = "Following"
     @user = User.find(params[:id])
     @users = @user.followed_users.paginate(page: params[:page], :per_page => 30)
-    @search = User.search(params[:q])
+    @users_recomend = User.where("id IN (?) AND id NOT IN (?)",User.pluck(:id).shuffle[0..2],current_user.id)
+    @search = User.ransack(params[:q])
     render controller: 'users', action: 'index'
   end
 
@@ -34,7 +36,8 @@ class UsersController < ApplicationController
     @title = "Followers"
     @user = User.find(params[:id])
     @users = @user.followers.paginate(page: params[:page], :per_page => 30)
-    @search = User.search(params[:q])
+    @search = User.ransack(params[:q])
+    @users_recomend = User.where("id IN (?) AND id NOT IN (?)",User.pluck(:id).shuffle[0..2],current_user.id)
     render controller: 'users', action: 'index'
   end
 end

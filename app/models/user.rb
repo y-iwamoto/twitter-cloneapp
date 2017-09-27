@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   validates :email, presence: true,  format: { with: /\S+@\S+\.\S+/}
 
   def feed
-   Tweet.where("user_id = ?", id)
+   #Tweet.where("user_id = ?", id)
+   Tweet.from_users_followed_by(self)
   end
 
   def following?(other_user)

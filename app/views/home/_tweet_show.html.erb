@@ -1,12 +1,12 @@
 <% if @feed_items.any? %>
-  <h3 id="tweets">総ツイート数 (<%= @user.tweets.count %>件)</h3>
+  <h3 id="tweets">総ツイート数 (<%= @feed_items.count %>件)</h3>
   <% @feed_items.each do |tweet| %>
   <ol class="tweets">
     <li>
       <span class="small">Name: <%= tweet.user.name %></span>
       <span class="content"><%= tweet.content %></span>
       <span class="timestamp">
-        Posted <%= time_ago_in_words(tweet.created_at) %> ago.
+        <%= time_ago_in_words(tweet.created_at) %>前
       </span>
       <% if current_user == tweet.user %>
       <%= link_to '変更',edit_tweet_path(tweet), remote: true %>
@@ -19,7 +19,7 @@
   </ol>
   <% end %>
   <div class="tweet_form">
-    <%= will_paginate @feed_items , renderer: BootstrapPagination::Rails%>
+    <%= will_paginate @feed_items , renderer: BootstrapPagination::Rails %>
   </div>
 
 <% end %>

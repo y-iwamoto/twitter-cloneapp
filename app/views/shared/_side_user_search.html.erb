@@ -1,0 +1,22 @@
+<div class="well well-sm user_seacrh_sidebar_well">
+  <div class="row user_seacrh_sidebr">
+    <div class="col-xs-8">
+      <h4>おすすめユーザー</h4>
+    </div>
+    <div class="col-xs-4 user_search_link">
+      <%= link_to "すべて見る",'/users/index' %>
+    </div>
+  </div>
+  <% @users_recomend.each do |user| %>
+  <div class="row user_seacrh_sidebar">
+    <div class="col-xs-3">
+      <a href="<%= user_path(user) %>">
+        <%= gravatar_for user, size: 52 %>
+      </a>
+    </div>
+    <div class="col-xs-9">
+      <h4><%= user.name %></h4>
+    </div>
+  </div>
+  <% end %>
+</div>

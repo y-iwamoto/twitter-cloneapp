@@ -14,6 +14,27 @@
  *= require_tree .
  *= require_self
  */
+ /* header */
+
+ #logo {
+   float: left;
+   margin-right: 10px;
+   font-size: 1.7em;
+   color: #fff;
+   text-transform: uppercase;
+   letter-spacing: -1px;
+   padding-top: 12px;
+   font-weight: bold;
+   line-height: 1;
+ }
+ #logo:hover {
+   color: #fff;
+   text-decoration: none;
+ }
+/* home  */
+.homu_up {
+  margin:40px 0px 0px 0px;
+}
  /* forms */
  #error_explanation {
   color: #f00;
@@ -30,7 +51,7 @@
 }
 /* tweets */
 .tweet_form {
-  margin: 20px 10px 10px 40px;
+  margin: 20px 0px 10px 0px;
 }
 h3#tweets {
   margin: 20px 10px 10px 40px;
@@ -53,7 +74,7 @@ h3#tweets {
 }
 /* user_search */
 .user_search_form {
-  margin: 20px 10px 10px 40px;
+  margin: 60px 10px 10px 40px;
 }
 .search_field {
   margin:0px 0px 10px 0px
@@ -74,7 +95,31 @@ h3#tweets {
 .user_paging {
   margin: 20px 10px 10px 40px;
 }
+.users_search_list {
+  width:680px;
+}
+#follow_form {
+  text-align: right;
+}
+.user_info {
+  padding: 0px 0px 0px 10px;
+}
 /* sidebar */
+.follow_count {
+  margin:60px 10px 10px 10px;
+  width:290px;
+}
+.user_seacrh_sidebar {
+  width:290px;
+}
+.user_seacrh_sidebar_well {
+  width:290px;
+  margin:0px 0px 0px 10px;
+}
+
+.user_search_link {
+  margin:10px 0px 0px 0px;
+}
 .stats {
   overflow: auto;
   a {
