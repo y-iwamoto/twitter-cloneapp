@@ -8,20 +8,20 @@
         <div class="col-xs-1">
           <%= gravatar_for user, size: 52 %>
         </div>
-        <div class="col-xs-9">
-          <div class="">
+        <div class="col-xs-8">
+          <div class="user_info">
             <%= user.name %>
           </div>
-          <div class="">
+          <div class="user_info">
             <%= user.self_introduction %>
           </div>
           <% if user.homepage_url %>
-            <div class="">
+            <div class="user_info">
               <%= link_to user.homepage_url, user.homepage_url, :target=>["_blank"]  %>
             </div>
           <% end %>
         </div>
-        <div class="col-xs-2">
+        <div class="col-xs-3">
           <% unless current_user == user %>
             <div id="follow_form">
             <% if current_user.following?(user) %>

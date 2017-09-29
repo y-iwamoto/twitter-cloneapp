@@ -1,4 +1,7 @@
 <div class="user_search_form">
+  <% flash.each do |key, value| %>
+    <div class="alert <%= bootstrap_class_for(key) %> tweet_form"><%= value %></div>
+  <% end %>
   <%= search_form_for @search, :url => {:action => 'show'} do |f| %>
     <div class="field search_field">
       <%= f.search_field :name_cont, placeholder: "名前を入力して下さい",class: "form-control"  %>
