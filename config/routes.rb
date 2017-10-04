@@ -1,7 +1,12 @@
 TwitterCloneapp::Application.routes.draw do
   devise_for :users, :controllers => {
-    :registrations => "registrations"
+    :registrations => "registrations",
+    :sessions => "sessions"
   }
+  devise_scope :user do
+    root :to => "sessions#new"
+  end
+  match '/home/',    to: 'home#index',    via: 'get'
   match '/edit',    to: 'home#edit',    via: 'get'
   match '/users/' => 'users#index', :via => 'get'
   match '/users/show' => 'users#show', :via => 'get'
@@ -14,7 +19,7 @@ TwitterCloneapp::Application.routes.draw do
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  root to: "home#index"
+  #root to: "home#index"
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

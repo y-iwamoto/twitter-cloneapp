@@ -12,7 +12,11 @@
   <![endif]-->
 </head>
 <body>
-  <%= render 'layouts/header' %>
+  <% if signed_in? %>
+    <%= render 'layouts/header' %>
+  <% else %>
+  <%= render 'layouts/header_login_ago' %>
+  <% end %>
 <div class="container">
   <%= yield %>
 </div>
