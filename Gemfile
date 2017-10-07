@@ -45,6 +45,14 @@ gem 'ransack'
 
 gem 'faker', '1.1.2'
 
+gem  'momentjs-rails', '>=2.9.0'
+
+gem  'bootstrap3-datetimepicker-rails','~> 4.17.47 '
+
+gem 'carrierwave'
+
+gem 'rmagick'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -52,6 +60,7 @@ end
 group :development do
   gem 'better_errors' # Better Errors本体
   gem 'binding_of_caller' # Better Errors上でREPLを使用するためのgem
+  gem 'letter_opener_web'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

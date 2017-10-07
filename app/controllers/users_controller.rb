@@ -40,4 +40,9 @@ class UsersController < ApplicationController
     @users_recomend = User.where("id IN (?) AND id NOT IN (?)",User.pluck(:id).shuffle[0..2],current_user.id)
     render controller: 'users', action: 'index'
   end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :email,:current_password,:password, :password_confirmation,:self_introduction,:place,:homepage_url,:birthday,:image)
+  end
 end

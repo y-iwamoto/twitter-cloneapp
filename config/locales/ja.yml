@@ -44,3 +44,11 @@ ja:
       attributes:
         user:
           remember_me: "保存する"
+      errors:
+        models:
+          user:
+            attributes:
+              current_password:
+                invalid: "が登録データと異なります"
+              password_confirmation:
+                confirmation: "パスワードと確認用で入力内容が異なります"
