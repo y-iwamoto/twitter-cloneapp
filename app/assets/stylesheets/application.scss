@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'bootstrap-datetimepicker';
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -54,6 +55,15 @@
 }
 .login_panel {
   margin:60px 0px 0px 0px;
+}
+/* user_edit */
+.user_edit_msg {
+  margin: 20px 0px 10px 0px;
+}.user_img {
+  margin:0px 0px 20px 0px;
+}
+.user_delete {
+  margin:20px 0px 0px 0px;
 }
 /* home  */
 .homu_up {

@@ -1,39 +1,97 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>プロフィールを編集</h2>
+    <% flash.each do |key, value| %>
+      <div class="alert <%= bootstrap_class_for(key) %> user_edit_msg"><%= value %></div>
+    <% end %>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:multipart => true},  :data => {:toggle=>"validator",:role=>"form"}) do |f| %>
+    <%= render 'devise/shared/error_messages', object: f.object %>
+    <div class="form-group  has-feedback">
+      <div class="field">
+        <%= f.text_field :name, autofocus: true ,:placeholder =>"呼び名（ニックネームも可）", class: "form-control" ,:maxlength => 20,:data => {:error=>"20文字以内で入力してください"} %>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.email_field :email, autofocus: true ,:placeholder =>"メールアドレス", class: "form-control",:data => { :error => "有効なメールアドレスを入力してください。"}  %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.password_field :current_password, autocomplete: "off" ,:placeholder =>"現在のパスワード" ,class: "form-control", :data => {:minlength => 6,:minlength_error=>"6文字以上で入力してください"} %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "off" ,:placeholder =>"パスワード" ,class: "form-control", :data => {:minlength => 6,:minlength_error=>"6文字以上で入力してください"} %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.password_field :password_confirmation, autocomplete: "off" ,:placeholder =>"確認用パスワード" ,class: "form-control", :data => {:minlength => 6,:minlength_error=>"6文字以上で入力してください"}%>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.text_field :self_introduction, autofocus: true ,:placeholder =>"自己紹介", class: "form-control" ,:maxlength => 160,:data => {:error=>"160文字以内で入力してください"} %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.text_field :place, autofocus: true ,:placeholder =>"場所", class: "form-control" ,:maxlength => 160,:data => {:error=>"160文字以内で入力してください"} %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <%= f.text_field :homepage_url, autofocus: true ,:placeholder =>"ホームページ", class: "form-control" ,pattern: "^(http|https|ftp):\/\/[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+\/?$",:data => {:pattern_error=>"
+            URL形式で入力してください"} %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field input-group date"  id='datetimepicker1'>
+          <%= f.text_field :birthday, autofocus: true ,:placeholder =>"誕生日", class: "form-control " ,pattern:"^([1-9][0-9]{3})[\/|\-](0[1-9]|1[0-2])[\/|\-](0[1-9]|[12][0-9]|3[01])$",:data => {:pattern_error=>"日付形式で入力して下さい",:error=>"160文字以内で入力してください"} %>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <div class="help-block with-errors"></div>
+      </div>
+      <div class="form-group  has-feedback">
+        <div class="field">
+          <% if resource.image != '' || resource.image != nil%>
+          <div class="user_img">
+            <%= image_tag resource.image.url %>
+          </div>
+          <% end %>
+          <%= f.file_field :image, autofocus: true ,:placeholder =>"画像", class: "form-control"  %>
+          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit "変更を保存", :class=>"btn btn-primary btn-block" %>
+      </div>
+      <% end %>
+      <div class="user_delete">
+      <%= button_to "アカウントを削除", registration_path(resource_name), data: { confirm: "アカウントを削除してもよろしいでしょうか?" }, method: :delete, :class=>"btn btn-danger btn-block"  %>
+      </div>
   </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

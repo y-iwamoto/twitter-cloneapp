@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
                                    dependent:   :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
   before_create { generate_token(:auth_token) }
+  mount_uploader :image, ImageUploader
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -16,7 +17,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true,  format: { with: /\S+@\S+\.\S+/}
 
   def feed
-   #Tweet.where("user_id = ?", id)
    Tweet.from_users_followed_by(self)
   end
 
@@ -35,5 +35,14 @@ class User < ActiveRecord::Base
       begin
         self[column] = SecureRandom.urlsafe_base64
       end while User.exists?(column => self[column])
-    end
+  end
+  def update_without_password(params, *options)
+    params.delete(:password)
+    params.delete(:password_confirmation)
+    params.delete(:current_password)
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
+  end
+
 end
