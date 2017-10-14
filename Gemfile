@@ -60,7 +60,7 @@ end
 group :development do
   gem 'better_errors' # Better Errors本体
   gem 'binding_of_caller' # Better Errors上でREPLを使用するためのgem
-  gem 'letter_opener_web'
+  gem 'letter_opener'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

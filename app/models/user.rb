@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :followers, through: :reverse_relationships, source: :follower
   before_create { generate_token(:auth_token) }
   mount_uploader :image, ImageUploader
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true, length: { maximum: 20 }

@@ -4,6 +4,7 @@ class RelationshipsController < ApplicationController
   def create
     @user = User.find(params[:relationship][:followed_id])
     current_user.follow!(@user)
+    NoticeMailer.sendmail_test(@user,current_user).deliver
     @search_q = session[:search_q]
     redirect_to @user
   end
