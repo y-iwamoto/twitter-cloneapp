@@ -18,9 +18,6 @@ TwitterCloneapp::Application.routes.draw do
     end
   end
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
