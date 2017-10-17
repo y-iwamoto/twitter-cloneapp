@@ -18,3 +18,4 @@
 # .gitignore
 # .DS_Store banished!
 .DS_Store
+.env

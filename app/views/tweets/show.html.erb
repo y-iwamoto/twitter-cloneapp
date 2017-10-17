@@ -1,0 +1,21 @@
+<h2>ツイート詳細</h2>
+<ol class="tweets">
+  <li>
+    <span class="small">Tweet_User_Name: <%= @tweet.user.name %></span>
+    <span class="content">Tweet_Content:<%= @tweet.content %></span>
+    <span class="timestamp">
+      Tweet_Time:<%= time_ago_in_words(@tweet.created_at) %>前
+    </span>
+    <ol class="tweets">
+    <% @comments.each do |comment| %>
+    <li>
+      <span class="small">Comment_User_Name: <%= comment.user.name %></span>
+      <span class="content">Comment:<%= comment.comment %></span>
+      <span class="timestamp">
+        Comment_Time:<%= time_ago_in_words(comment.created_at) %>前
+      </span>
+    </li>
+    <% end %>
+    </ol>
+  </li>
+</ol>

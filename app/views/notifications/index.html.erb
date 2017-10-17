@@ -1,0 +1,21 @@
+<h2>お知らせ</h2>
+<ul>
+  <% @notifications.each do |notification| %>
+  <hr>
+    <li>
+      <p>
+        <% if notification.comment_id.present? %>
+          <%= notification.comment.user.try(:name) %>さんが<%= notification.tweet.user.try(:name) %>さんの
+          <%= link_to "#{notification.tweet.content}", tweets_show_path(id: notification.tweet.id, notification_id: notification.id) %>に対するコメントをしました。
+        <% else %>
+          <%= notification.tweet.user.try(:name) %>さんが
+          <%= link_to "#{notification.tweet.content}", tweets_show_path(id: notification.tweet.id, notification_id: notification.id) %>をツイートしました。
+        <% end %>
+      </p>
+      <p><%= posted_time(notification.created_at) %></p>
+    </li>
+  <% end %>
+  <% if @notifications.blank?%>
+    <li>現在、表示するものはありません。</li>
+  <% end %>
+</ul>

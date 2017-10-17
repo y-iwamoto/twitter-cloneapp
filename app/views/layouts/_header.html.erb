@@ -4,6 +4,11 @@
        <ul class="nav navbar-nav navbar-left">
          <li><%= link_to "ホーム",    home_path %></li>
          <li><%= link_to "設定",    edit_user_registration_path %></li>
+         <li>
+           <%= link_to notifications_index_path do %>
+            <i class="fa fa-bell"><%= @notifications_count %></i>
+          <% end %>
+         </li>
          <li><%= link_to "ログアウト", destroy_user_session_path, method: "delete" %></li>
        </ul>
      </nav>

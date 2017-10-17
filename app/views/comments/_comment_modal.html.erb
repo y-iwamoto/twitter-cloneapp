@@ -1,0 +1,26 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <%= form_for(@comment, remote: true) do |f| %>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Tweetのコメント</h4>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <%= f.label :comment, "コメント内容" %><br>
+          <%= f.text_field :comment, size: 80  %>
+        </div>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+          <%= f.hidden_field :user_id, :value =>  @user.id %>
+          <%= f.hidden_field :tweet_id, :value =>  @tweet.id %>
+          <%= f.hidden_field :to_user_id, :value =>  @to_user.id %>
+          <%= f.submit "作成する", :class => "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -13,7 +13,10 @@
         <%= link_to "削除", tweet, method: :delete,
                                          data: { confirm: "Tweetを削除してもよろしいでしょうか？" },
                                          title: tweet.content %>
+      <% else %>
+        <%= link_to 'コメント',new_comment_path(id: tweet.id), remote: true %>
       <% end %>
+      <div id="tweet-comment-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <div id="tweet-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
     </li>
   </ol>
