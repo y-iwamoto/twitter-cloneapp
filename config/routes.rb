@@ -1,4 +1,5 @@
 TwitterCloneapp::Application.routes.draw do
+  get "notifications/index"
   devise_for :users, :controllers => {
     :registrations => "registrations",
     :sessions => "sessions"
@@ -8,10 +9,13 @@ TwitterCloneapp::Application.routes.draw do
   end
   match '/home/',    to: 'home#index',    via: 'get'
   match '/edit',    to: 'home#edit',    via: 'get'
+  match '/comment',    to: 'tweets#comment',    via: 'get'
   match '/users/' => 'users#index', :via => 'get'
   match '/users/show' => 'users#show', :via => 'get'
+  match '/tweets/show' => 'tweets#show', :via => 'get'
   resources :tweets, only:[:create, :destroy,:edit,:update]
   resources :relationships, only: [:create, :destroy]
+  resources :comments, only:[:new,:create, :destroy,:edit,:update]
   resources :users, only: [:show, :index, :destroy] do
     member do
       get :following, :followers

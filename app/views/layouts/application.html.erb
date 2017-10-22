@@ -6,6 +6,19 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "validator", "data-turbolinks-track" => true %>
 
+  <% if user_signed_in? %>
+  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+  <script>
+
+  var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',{ encrypted: true, cluster: 'ap1' });
+
+  var channel = pusher.subscribe("user_<%= current_user.id %>_channel");
+
+  channel.bind('comment_created', function(data) { alert(data.message); });
+
+  </script>
+  <% end %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
